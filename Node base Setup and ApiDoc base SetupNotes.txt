@@ -1,0 +1,92 @@
+Backend Packages:
+1. body-parser
+2. express
+3. mongoose
+4. dotenv
+5. cors
+6. nodemon
+7. express-async-handler
+8. bcryptjs
+
+NODE JS Base Setup :
+--------------------
+const dotenv = require("dotenv").config();
+const express =  require("express");
+const mongoose = require("mongoose");
+const bodyParser =  require("body-parser");
+const cors = require("cors");
+
+const app = express();
+
+// Middlewares
+
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+app.use(bodyParser.json())
+
+const PORT = process.env.PORT || 5000;
+
+// Routes
+app.get("/", (req, res)=>{
+    res.send("Home Page");
+});
+
+// Connect to DB and start server
+
+mongoose.connect(process.env.MONGO_URI).then(()=>{app.listen(PORT,()=>{
+    console.log(`Server Successfully Running on port ${PORT}`);
+})})
+.catch((err)=>console.log(err))
+
+
+To Encrypt the Password in Node JS
+----------------------------------
+
+// Encrypt the Password 
+const salt = await bcrypt.genSalt(10);
+const hashedPassword = await bcrypt.hash(password, salt);
+
+
+To install apidocs:
+-------------------
+
+Step 1 :
+    put all node files inside src folder
+    install apidocs (npm i apidocs)
+
+Step 2:     
+    
+    -Create Docs folder inside backend folder and create public folder inside Docs folder.
+
+Step 3: 
+    -  Inside Index.JS or Script.JS we need to paste those Queries
+             
+    1. const path = require('path');
+   
+    2. app.use(express.static(path.join(__dirname, 'public')));
+   
+    3. app.use("/doc",express.static('./Docs'))
+   
+    4. app.get("/", (req, res) => {
+       return res.status(200).send(`<html><body><div style="text-align: center;margin-top: 200;"><p style="font-family: serif;font-size: 20px;font-weight: bold;">Welcome to Inventory Application</p><button><a href="http://localhost:4000/doc">Api Docs</a></button></div></body></html>`);
+      });
+Step 4:
+    Enter those queries inside Packages.json
+--------------------------------------------------
+    "apidoc": {
+    "name": "Inventory API Docs",
+    "version": "1.0.0",
+    "description": "Base URL --->  http://localhost:4000 \n",
+    "title": "Inventory RESTFUL API Document"
+  },
+
+  Paste This Lines inside Packages.json under scripts
+  ----------------------------------------------------
+    
+    "generatedoc": "apidoc -i src -o ./Docs"
+
+Step 5:
+     To run apidocs, Type this Command (npm run generatedoc)
+
+Step 6: To see your Api Docs  
+         http://localhost:4000/doc
