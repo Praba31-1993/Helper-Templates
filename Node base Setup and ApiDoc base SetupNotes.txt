@@ -91,3 +91,25 @@ Befoure run generatedoc, create one api with api docs sample code after run the 
 
 Step 6: To see your Api Docs  
          http://localhost:4000/doc
+
+Api Doc Sample Codes To Test
+/**
+ * @api {Post} /api/users/register Request Register User 
+ * @apiName Register User
+ * @apiGroup User
+ *
+ * @apiBody {String} name  name of the User.
+ * @apiBody {String} email email of the User.
+ * @apiBody {String} password password of the User.
+ * 
+ * @apiSuccessExample {json} Success
+ * HTTP/1.1 200 OK
+ * {
+ *      "message": "Property List retrieve successfully.",
+ *      "status": 1,
+ *      "data":{}
+ * }
+ * @apiSampleRequest /api/users/register
+ * @apiErrorExample {json} Page error
+ * HTTP/1.1 400 Internal Server Error
+ */
