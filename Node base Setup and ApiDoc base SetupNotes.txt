@@ -86,6 +86,7 @@ Step 4:
     "generatedoc": "apidoc -i src -o ./Docs"
 
 Step 5:
+Befoure run generatedoc, create one api with api docs sample code after run the apidocs. It will generate otherwise it will show path error
      To run apidocs, Type this Command (npm run generatedoc)
 
 Step 6: To see your Api Docs  
